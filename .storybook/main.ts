@@ -1,19 +1,18 @@
-import type { StorybookConfig } from '@storybook/vue3-vite';
+import { mergeConfig, type UserConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import type { StorybookConfig } from '@storybook/vue3-vite'
 
 const config: StorybookConfig = {
-  stories: [
-    '../components/**/*.stories.@(js|ts|mdx)',
-  ],
-  addons: [
-    '@storybook/addon-essentials',
-  ],
-  framework: {
-    name: '@storybook/vue3-vite',
-    options: {}
-  },
-  docs: {
-    autodocs: 'tag'
-  }
-};
+  framework: '@storybook/vue3-vite',
+  stories: ['../components/**/*.stories.@(ts|js|mdx)'],
+  addons: ['@storybook/addon-essentials'],
+  docs: { autodocs: 'tag' },
 
-export default config;
+  async viteFinal (cfg) {
+    return mergeConfig(cfg as UserConfig, {
+      plugins: [vue()]
+    })
+  }
+}
+
+export default config
