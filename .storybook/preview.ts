@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/vue3'
 import './storybook.css'
-
+import '../assets/css/tailwind.css';
 const decorators = [
   (story) => ({
     components: { 
