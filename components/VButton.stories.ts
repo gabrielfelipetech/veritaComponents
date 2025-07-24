@@ -18,6 +18,14 @@ export default {
       control: { type: 'boolean' },
       description: 'Define se o botão estará desabilitado'
     },
+    loading: {
+      control: { type: 'boolean' },
+      description: 'Mostra ícone de carregamento'
+    },
+    isThemeDark: {
+      control: { type: 'boolean' },
+      description: 'Aplica o tema escuro'
+    },
     ariaLabel: {
       control: { type: 'text' },
       description: 'Descrição acessível para leitores de tela'
@@ -29,7 +37,10 @@ export default {
     },
     color: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'tertiary'],
+      options: [
+        'primary-em', 'secondary-em', 'tertiary-em',
+        'primary-bp', 'secondary-bp', 'tertiary-bp'
+      ],
       description: 'Estilo visual do botão'
     },
     icon: {
@@ -40,19 +51,13 @@ export default {
       control: { type: 'select' },
       options: ['left', 'right'],
       description: 'Posição do ícone'
-    },
-    loading: {
-      control: { type: 'boolean' },
-      description: 'Mostra ícone de carregamento'
     }
   }
 }
 
 const Template = (args: any) => ({
   components: { VButton },
-  setup() {
-    return { args }
-  },
+  setup() { return { args } },
   template: '<VButton v-bind="args">Botão Exemplo</VButton>'
 })
 
@@ -61,12 +66,13 @@ Primary.args = {
   size: 'md',
   fullWidth: false,
   disabled: false,
+  loading: false,
+  isThemeDark: false,
   ariaLabel: 'Botão Exemplo',
   type: 'button',
-  color: 'primary',
+  color: 'primary-bp',
   icon: '',
-  iconPosition: 'left',
-  loading: false
+  iconPosition: 'left'
 }
 
 export const WithIconLeft = Template.bind({})
@@ -104,11 +110,18 @@ FullWidth.args = {
 export const Secondary = Template.bind({})
 Secondary.args = {
   ...Primary.args,
-  color: 'secondary'
+  color: 'secondary-em'
 }
 
 export const Tertiary = Template.bind({})
 Tertiary.args = {
   ...Primary.args,
-  color: 'tertiary'
+  color: 'tertiary-em'
+}
+
+export const DarkMode = Template.bind({})
+DarkMode.args = {
+  ...Primary.args,
+  isThemeDark: true,
+  color: 'primary-em'
 }
