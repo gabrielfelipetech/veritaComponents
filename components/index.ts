@@ -7,3 +7,6 @@ export { default as VRadio  } from './VRadio.vue'
 export { default as VSidebar} from './VSidebar.vue'
 export { default as VSidebarItem} from './VSidebarItem.vue'
 export { default as VLink} from './VLink.vue'
+export { default as VQuestionGroup } from './VQuestionGroup.vue'
+export { default as VCheckbox } from './VCheckbox.vue'
+
