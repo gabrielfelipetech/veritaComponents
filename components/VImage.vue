@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-
+import { NuxtImg } from '#components'
 const props = defineProps<{
   src:   string
   alt?:  string
