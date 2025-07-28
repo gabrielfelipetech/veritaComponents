@@ -9,7 +9,7 @@
   >
     <template v-if="iconPosition === 'left' && (icon || loading)">
       <IconAdapter
-        :name="loading ? 'mdi:loading' : icon"
+        :name="loading ? 'mdi:loading' : (icon||'')"
         class="mr-2"
         :class="{ 'animate-spin': loading }"
       />
@@ -19,7 +19,7 @@
 
     <template v-if="iconPosition === 'right' && (icon || loading)">
       <IconAdapter
-        :name="loading ? 'mdi:loading' : icon"
+        :name="loading ? 'mdi:loading' : (icon||'')"
         class="ml-2"
         :class="{ 'animate-spin': loading }"
       />
