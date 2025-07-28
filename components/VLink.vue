@@ -1,13 +1,15 @@
 <template>
-  <component :is="tag"
-             v-bind="linkProps"
-             v-bind="$attrs">
+  <component :is="isExternal ? 'a' : NuxtLink"
+             v-bind="merged">
     <slot />
   </component>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
+import { NuxtLink } from '#components'
+
+const attrs = useAttrs()
 
 const props = defineProps({
   to: { type: String, required: true },
@@ -18,19 +20,18 @@ const props = defineProps({
   rel: { type: String, default: undefined }
 })
 
-const isExternal = computed(() =>
-  props.external || /^(https?:|\/\/|mailto:|tel:|#)/.test(props.to)
+const isExternal = computed(
+  () => props.external || /^(https?:|\/\/|mailto:|tel:|#)/.test(props.to)
 )
 
-const computedRel = computed(() =>
-  props.rel ?? (props.target === '_blank' ? 'noopener noreferrer' : undefined)
-)
+const computedRel = computed(() => {
+  if (props.rel) return props.rel
+  if (props.target === '_blank') return 'noopener noreferrer'
+})
 
-const tag = computed(() => (isExternal.value ? 'a' : 'NuxtLink'))
-
-const linkProps = computed(() =>
+const merged = computed(() =>
   isExternal.value
-    ? { href: props.to, target: props.target, rel: computedRel.value }
-    : { to: props.to, replace: props.replace, prefetch: props.prefetch }
+    ? { ...attrs, href: props.to, target: props.target, rel: computedRel.value }
+    : { ...attrs, to: props.to, replace: props.replace, prefetch: props.prefetch }
 )
 </script>
