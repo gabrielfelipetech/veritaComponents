@@ -3,17 +3,17 @@
   "main": "./dist/verita-components.umd.js",
   "module": "./dist/verita-components.es.js",
   "types": "./dist/index.d.ts",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Component library for Nuxt/Vue 3 using TailwindCSS",
   "author": "Gabriel Antonio Felipe",
   "license": "MIT",
   "exports": {
-   ".": {
-     "import":  "./dist/verita-components.es.js",
-     "require": "./dist/verita-components.umd.js"
-   },
-   "./dist/verita-components.css": "./dist/verita-components.css"
- },
+    ".": {
+      "import": "./dist/verita-components.es.js",
+      "require": "./dist/verita-components.umd.js"
+    },
+    "./dist/verita-components.css": "./dist/verita-components.css"
+  },
   "files": [
     "dist"
   ],
