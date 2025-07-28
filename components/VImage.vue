@@ -1,24 +1,21 @@
 <template>
-  <NuxtImg
-    :src="src"
-    :alt="alt"
-    :width="width"
-    :height="height"
-    :format="format"
-    :quality="quality"
-    :placeholder="placeholder"
-    :lazy="lazy"
-    :provider="provider"
-    class="rounded-lg overflow-hidden"
-    v-bind="$attrs"
-  />
+  <NuxtImg :src="src"
+           :alt="alt"
+           :width="width"
+           :height="height"
+           :format="format"
+           :quality="quality"
+           :placeholder="placeholder"
+           :lazy="lazy"
+           :provider="provider"
+           class="rounded-lg overflow-hidden"
+           v-bind="$attrs" />
 </template>
 
 <script setup lang="ts">
-import { NuxtImg } from '#components'
 const props = defineProps<{
-  src:   string
-  alt?:  string
+  src: string
+  alt?: string
   width?: number
   height?: number
   format?: 'jpeg' | 'png' | 'webp' | 'avif'
@@ -31,13 +28,13 @@ const props = defineProps<{
 const {
   src,
   alt = '',
-  width = undefined,
-  height = undefined,
-  format = undefined,
+  width,
+  height,
+  format,
   quality = 75,
   placeholder = 'blur',
   lazy = true,
-  provider = undefined
+  provider
 } = props
 </script>
 
