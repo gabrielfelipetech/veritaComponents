@@ -1,7 +1,7 @@
 <template>
-  <component :is="isExternal ? 'a' : 'NuxtLink'"
+  <component :is="tag"
              v-bind="linkProps"
-             v-on="$attrs">
+             v-bind="$attrs">
     <slot />
   </component>
 </template>
@@ -19,14 +19,14 @@ const props = defineProps({
 })
 
 const isExternal = computed(() =>
-  props.external ||
-  /^(https?:|\/\/|mailto:|tel:|#)/.test(props.to)
+  props.external || /^(https?:|\/\/|mailto:|tel:|#)/.test(props.to)
 )
 
-const computedRel = computed(() => {
-  if (props.rel) return props.rel
-  if (props.target === '_blank') return 'noopener noreferrer'
-})
+const computedRel = computed(() =>
+  props.rel ?? (props.target === '_blank' ? 'noopener noreferrer' : undefined)
+)
+
+const tag = computed(() => (isExternal.value ? 'a' : 'NuxtLink'))
 
 const linkProps = computed(() =>
   isExternal.value
