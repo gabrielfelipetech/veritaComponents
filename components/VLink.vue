@@ -1,5 +1,5 @@
 <template>
-  <component :is="isExternal ? 'a' : NuxtLink"
+  <component :is="isExternal ? 'a' : 'NuxtLink'"
              v-bind="merged">
     <slot />
   </component>
@@ -7,7 +7,6 @@
 
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue'
-import { NuxtLink } from '#components'
 
 const attrs = useAttrs()
 
