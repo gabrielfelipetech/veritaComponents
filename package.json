@@ -8,12 +8,12 @@
   "author": "Gabriel Antonio Felipe",
   "license": "MIT",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/verita-components.es.js",
-      "require": "./dist/verita-components.umd.js"
-    }
-  },
+   ".": {
+     "import":  "./dist/verita-components.es.js",
+     "require": "./dist/verita-components.umd.js"
+   },
+   "./dist/verita-components.css": "./dist/verita-components.css"
+ },
   "files": [
     "dist"
   ],
