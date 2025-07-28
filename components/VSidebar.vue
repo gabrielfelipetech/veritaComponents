@@ -20,7 +20,7 @@ const props = defineProps<{
 </script>
 <style lang="scss">
 .sidebar{
-  @apply w-64 text-white h-full
+  @apply w-64 text-white h-full;
   background-color: #013352;
 }
 </style>
