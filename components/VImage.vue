@@ -1,5 +1,5 @@
 <template>
-  <nuxt-img
+  <NuxtImg
     :src="src"
     :alt="alt"
     :width="width"
