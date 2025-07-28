@@ -1,31 +1,17 @@
 <template>
   <div :class="['form-control', widthClass, themeClass]">
-    <label
-      v-if="label && labelPosition === 'top'"
-      class="mb-1 text-sm font-medium"
-    >
+    <label v-if="label && labelPosition === 'top'" class="mb-1 text-sm font-medium">
       {{ label }}
     </label>
-
-    <div
-      :class="[
-        'relative',
-        labelPosition === 'left' ? 'flex items-center gap-2' : ''
-      ]"
-    >
-      <label
-        v-if="label && labelPosition === 'left'"
-        class="text-sm font-medium whitespace-nowrap"
-      >
+    <div :class="['relative', labelPosition === 'left' ? 'flex items-center gap-2' : '']">
+      <label v-if="label && labelPosition === 'left'" class="text-sm font-medium whitespace-nowrap">
         {{ label }}
       </label>
-
       <IconAdapter
         v-if="icon && iconPosition === 'left'"
         :name="icon"
         :class="['absolute left-3 top-1/2 -translate-y-1/2', iconColorClass]"
       />
-
       <input
         v-model="modelValue"
         :type="type || 'text'"
@@ -35,14 +21,12 @@
         :required="required"
         :class="inputClass"
       />
-
       <IconAdapter
         v-if="icon && iconPosition === 'right'"
         :name="icon"
         :class="['absolute right-3 top-1/2 -translate-y-1/2', iconColorClass]"
       />
     </div>
-
     <p v-if="error" class="mt-1 text-sm text-red-600">{{ error }}</p>
   </div>
 </template>
@@ -63,7 +47,7 @@ const {
   error,
   icon,
   iconPosition = 'left',
-  iconColor = 'text-gray-400',  
+  iconColor = 'text-gray-400',
   fullWidth = true,
   size = 'md',
   color = 'primary-em',
@@ -79,32 +63,49 @@ const {
   error?: string
   icon?: string
   iconPosition?: 'left' | 'right'
-  iconColor?: string              
+  iconColor?: string
   fullWidth?: boolean
   size?: 'sm' | 'md' | 'lg'
-  color?:
-    | 'primary-em' | 'secondary-em' | 'tertiary-em'
-    | 'primary-bp' | 'secondary-bp' | 'tertiary-bp'
+  color?: 'primary-em' | 'secondary-em' | 'tertiary-em' | 'primary-bp' | 'secondary-bp' | 'tertiary-bp'
   isThemeDark?: boolean
   labelPosition?: 'top' | 'left'
 }>()
 
-const widthClass     = computed(() => (fullWidth ? 'w-full' : 'w-auto'))
-const themeClass     = computed(() => (isThemeDark ? 'theme-dark' : ''))
-const iconColorClass = computed(() => iconColor)
-
-const sizeClass = computed(() => (size ? `input-${size}` : 'input-md'))
+const widthClass = computed(() => (fullWidth ? 'w-full' : 'w-auto'))
+const themeClass = computed(() => (isThemeDark ? 'theme-dark' : ''))
+const colorClass = computed(() => `input-${color}`)
 
 const inputClass = computed(() => {
-  const base = ['input', sizeClass.value, widthClass.value, colorClass.value]
-  if (icon) {
-    if (iconPosition === 'left')  base.push('pl-12')
-    if (iconPosition === 'right') base.push('pr-12')
+  const classes: string[] = [
+    'border',
+    'rounded-md',
+    'focus:outline-none',
+    widthClass.value,
+    colorClass.value
+  ]
+  switch (size) {
+    case 'sm':
+      classes.push('py-1', 'text-sm')
+      break
+    case 'lg':
+      classes.push('py-3', 'text-lg')
+      break
+    default:
+      classes.push('py-2', 'text-base')
   }
-  return [...base].filter(Boolean).join(' ')
+  if (icon) {
+    if (iconPosition === 'left') {
+      classes.push('pl-8', 'pr-4')
+    } else {
+      classes.push('pr-8', 'pl-4')
+    }
+  } else {
+    classes.push('px-4')
+  }
+  return classes.join(' ')
 })
 
-const colorClass = computed(() => `input-${color}`)
+const iconColorClass = computed(() => iconColor)
 </script>
 
 <style lang="scss" scoped>
@@ -139,19 +140,18 @@ $btn-colors-dark: (
     border-radius: 0.375rem;
     background: if(map.get($props, bg) == transparent, transparent, #fff);
     color: #000;
-
     &:focus {
       outline: none;
       box-shadow: 0 0 0 1px map.get($props, hover);
     }
   }
 }
+
 @each $name, $props in $btn-colors-dark {
   .theme-dark .input-#{$name} {
     border: 1px solid map.get($props, hover);
     background: #1F1F1F;
     color: #fff;
-
     &:focus {
       outline: none;
       box-shadow: 0 0 0 1px map.get($props, hover);
