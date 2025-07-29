@@ -1,4 +1,4 @@
-import VInput from './VInput.vue'
+import VInput from './VInput.vue';
 
 export default {
   title: 'Components/VInput',
@@ -7,72 +7,85 @@ export default {
   argTypes: {
     label: {
       control: 'text',
-      description: 'Texto acima do input'
+      description: 'Texto acima do input',
     },
     placeholder: {
       control: 'text',
-      description: 'Texto exibido como placeholder'
+      description: 'Texto exibido como placeholder',
     },
     type: {
       control: { type: 'select' },
-      options: ['text', 'email', 'password', 'number', 'url', 'search', 'tel', 'date', 'datetime-local', 'time', 'week', 'month'],
-      description: 'Tipo do input'
+      options: [
+        'text',
+        'email',
+        'password',
+        'number',
+        'url',
+        'search',
+        'tel',
+        'date',
+        'datetime-local',
+        'time',
+        'week',
+        'month',
+      ],
+      description: 'Tipo do input',
     },
     disabled: {
       control: 'boolean',
-      description: 'Desativa o input'
+      description: 'Desativa o input',
     },
     readonly: {
       control: 'boolean',
-      description: 'Define como somente leitura'
+      description: 'Define como somente leitura',
     },
     required: {
       control: 'boolean',
-      description: 'Define como obrigatório'
+      description: 'Define como obrigatório',
     },
     error: {
       control: 'text',
-      description: 'Mensagem de erro'
+      description: 'Mensagem de erro',
     },
     icon: {
       control: 'text',
-      description: 'Nome do ícone (Iconify)'
+      description: 'Nome do ícone (Iconify)',
     },
     iconPosition: {
       control: { type: 'select' },
       options: ['left', 'right'],
-      description: 'Posição do ícone'
+      description: 'Posição do ícone',
     },
     fullWidth: {
       control: 'boolean',
-      description: 'Define se ocupará toda a largura'
+      description: 'Define se ocupará toda a largura',
     },
     size: {
       control: { type: 'select' },
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'Tamanho do input'
+      description: 'Tamanho do input',
     },
     color: {
       control: { type: 'select' },
       options: ['neutral', 'primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error'],
-      description: 'Cor do input'
+      description: 'Cor do input',
     },
     modelValue: {
       control: 'text',
-      description: 'Valor do input (v-model)'
-    }
-  }
-}
+      description: 'Valor do input (v-model)',
+    },
+  },
+};
 
 const Template = (args: any) => ({
   components: { VInput },
   setup() {
-    return { args }
+    return { args };
   },
-  template: `<VInput v-bind="args" />`
-})
+  template: `<VInput v-bind="args" />`,
+});
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});
 Default.args = {
   label: 'Nome',
   placeholder: 'Digite seu nome',
@@ -86,46 +99,46 @@ Default.args = {
   fullWidth: false,
   size: 'md',
   color: 'neutral',
-  modelValue: ''
-}
+  modelValue: '',
+};
 
-export const WithIconLeft = Template.bind({})
+export const WithIconLeft = Template.bind({});
 WithIconLeft.args = {
   ...Default.args,
   icon: 'mdi:account',
-  iconPosition: 'left'
-}
+  iconPosition: 'left',
+};
 
-export const WithIconRight = Template.bind({})
+export const WithIconRight = Template.bind({});
 WithIconRight.args = {
   ...Default.args,
   icon: 'mdi:eye',
-  iconPosition: 'right'
-}
+  iconPosition: 'right',
+};
 
-export const Error = Template.bind({})
+export const Error = Template.bind({});
 Error.args = {
   ...Default.args,
-  error: 'Campo obrigatório'
-}
+  error: 'Campo obrigatório',
+};
 
-export const Disabled = Template.bind({})
+export const Disabled = Template.bind({});
 Disabled.args = {
   ...Default.args,
-  disabled: true
-}
+  disabled: true,
+};
 
-export const FullWidth = Template.bind({})
+export const FullWidth = Template.bind({});
 FullWidth.args = {
   ...Default.args,
-  fullWidth: true
-}
+  fullWidth: true,
+};
 
-export const Password = Template.bind({})
+export const Password = Template.bind({});
 Password.args = {
   ...Default.args,
   type: 'password',
   placeholder: 'Digite sua senha',
   icon: 'mdi:lock',
-  iconPosition: 'left'
-}
+  iconPosition: 'left',
+};

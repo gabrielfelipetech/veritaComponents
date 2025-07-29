@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -7,23 +7,31 @@ const config: Config = {
     './pages/**/*.{vue,js,ts}',
     './app.vue',
     './.storybook/**/*.{js,ts,mdx}',
-    './node_modules/verita-components/dist/**/*.{js,ts}'
+    './node_modules/verita-components/dist/**/*.{js,ts}',
   ],
   safelist: [
-    'h-8','text-sm','px-4',
-    'h-10','text-base','px-5',
-    'h-12','text-lg','px-6',
-    'w-full','w-auto',
-    'disabled:opacity-50','disabled:cursor-not-allowed'
+    'h-8',
+    'text-sm',
+    'px-4',
+    'h-10',
+    'text-base',
+    'px-5',
+    'h-12',
+    'text-lg',
+    'px-6',
+    'w-full',
+    'w-auto',
+    'disabled:opacity-50',
+    'disabled:cursor-not-allowed',
   ],
   theme: {
     extend: {
       colors: {
         primary: '#1e40af',
-        secondary: '#facc15'
-      }
-    }
-  }
-}
+        secondary: '#facc15',
+      },
+    },
+  },
+};
 
-export default config
+export default config;

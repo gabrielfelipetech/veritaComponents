@@ -1,39 +1,25 @@
 <template>
-  <label
-    :class="[
-      'radio-wrapper',
-      `radio-${size}`,
-      disabled ? 'disabled' : ''
-    ]"
-  >
-    <span
-      v-if="labelText && labelPosition === 'left'"
-      class="radio-label"
-    >
+  <label :class="['radio-wrapper', `radio-${size}`, disabled ? 'disabled' : '']">
+    <span v-if="labelText && labelPosition === 'left'" class="radio-label">
       {{ labelText }}
     </span>
     <input
+      v-model="modelValue"
       type="radio"
       class="sr-only"
       :name="name"
       :value="value"
       :disabled="disabled"
-      v-model="modelValue"
     />
     <span class="radio-circle"></span>
-    <span
-      v-if="labelText && labelPosition === 'right'"
-      class="radio-label"
-    >
+    <span v-if="labelText && labelPosition === 'right'" class="radio-label">
       {{ labelText }}
     </span>
   </label>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
-const modelValue = defineModel<string>()
+const modelValue = defineModel<string>();
 
 const {
   size = 'md',
@@ -41,28 +27,40 @@ const {
   labelPosition = 'right',
   disabled = false,
   name,
-  value
+  value,
 } = defineProps<{
-  size?: 'sm' | 'md' | 'lg'
-  labelText?: string
-  labelPosition?: 'left' | 'right'
-  disabled?: boolean
-  name?: string
-  value?: string
-}>()
+  size?: 'sm' | 'md' | 'lg';
+  labelText?: string;
+  labelPosition?: 'left' | 'right';
+  disabled?: boolean;
+  name?: string;
+  value?: string;
+}>();
 </script>
 
 <style lang="scss" scoped>
-@use "sass:map";
-@use "sass:color";
+@use 'sass:map';
+@use 'sass:color';
 
 $radio-sizes: (
-  sm: (dim: 1rem,  border: 2px, dot: 0.5rem),
-  md: (dim: 1.25rem, border: 2px, dot: 0.625rem),
-  lg: (dim: 1.5rem,  border: 2px, dot: 0.75rem)
+  sm: (
+    dim: 1rem,
+    border: 2px,
+    dot: 0.5rem,
+  ),
+  md: (
+    dim: 1.25rem,
+    border: 2px,
+    dot: 0.625rem,
+  ),
+  lg: (
+    dim: 1.5rem,
+    border: 2px,
+    dot: 0.75rem,
+  ),
 );
 
-$primary-em: #3D89BC;
+$primary-em: #3d89bc;
 
 .radio-wrapper {
   display: inline-flex;
@@ -81,7 +79,7 @@ $primary-em: #3D89BC;
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     white-space: nowrap;
   }
@@ -98,10 +96,12 @@ $primary-em: #3D89BC;
   background: #fff;
   border: 2px solid #ccc;
   border-radius: 50%;
-  transition: border-color 0.2s, background-color 0.2s;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     border-radius: 50%;
     background: $primary-em;

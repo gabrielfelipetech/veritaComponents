@@ -5,13 +5,10 @@
       sizeClass,
       colorClass,
       disabled ? 'disabled' : '',
-      isChecked ? 'checked' : ''
+      isChecked ? 'checked' : '',
     ]"
   >
-    <span
-      v-if="labelText && labelPosition === 'left'"
-      class="checkbox-label"
-    >
+    <span v-if="labelText && labelPosition === 'left'" class="checkbox-label">
       {{ labelText }}
     </span>
 
@@ -27,92 +24,117 @@
 
     <span class="checkbox-box"></span>
 
-    <span
-      v-if="labelText && labelPosition === 'right'"
-      class="checkbox-label"
-    >
+    <span v-if="labelText && labelPosition === 'right'" class="checkbox-label">
       {{ labelText }}
     </span>
   </label>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from 'vue';
 
-const modelValue = defineModel<boolean | any[]>()
+const modelValue = defineModel<boolean | any[]>();
 
 const props = defineProps<{
-  modelValue?: boolean | any[]
-  value?: any
-  name?: string
-  labelText?: string
-  labelPosition?: 'left' | 'right'
-  disabled?: boolean
-  size?: 'sm' | 'md' | 'lg'
-  color?: 
-    | 'primary-em' | 'secondary-em' | 'tertiary-em'
-    | 'primary-bp'   | 'secondary-bp'   | 'tertiary-bp'
-}>()
+  modelValue?: boolean | any[];
+  value?: any;
+  name?: string;
+  labelText?: string;
+  labelPosition?: 'left' | 'right';
+  disabled?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  color?:
+    | 'primary-em'
+    | 'secondary-em'
+    | 'tertiary-em'
+    | 'primary-bp'
+    | 'secondary-bp'
+    | 'tertiary-bp';
+}>();
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', v: boolean | any[]): void
-}>()
+  (e: 'update:modelValue', v: boolean | any[]): void;
+}>();
 
 const isChecked = computed(() => {
   if (Array.isArray(props.modelValue)) {
-    return props.value !== undefined && props.modelValue.includes(props.value)
+    return props.value !== undefined && props.modelValue.includes(props.value);
   }
-  return !!props.modelValue
-})
+  return !!props.modelValue;
+});
 
 function onChange(e: Event) {
-  const input = e.target as HTMLInputElement
+  const input = e.target as HTMLInputElement;
   if (Array.isArray(props.modelValue)) {
-    const arr = [...props.modelValue]
+    const arr = [...props.modelValue];
     if (input.checked) {
-      if (!arr.includes(props.value)) arr.push(props.value)
+      if (!arr.includes(props.value)) arr.push(props.value);
     } else {
-      const idx = arr.indexOf(props.value)
-      if (idx > -1) arr.splice(idx, 1)
+      const idx = arr.indexOf(props.value);
+      if (idx > -1) arr.splice(idx, 1);
     }
-    emit('update:modelValue', arr)
+    emit('update:modelValue', arr);
   } else {
-    emit('update:modelValue', input.checked)
+    emit('update:modelValue', input.checked);
   }
 }
 
-const sizeClass     = computed(() => `checkbox-${props.size || 'md'}`)
-const colorClass    = computed(() => `checkbox-${props.color || 'primary-em'}`)
-const disabledClass = computed(() => (props.disabled ? 'disabled' : ''))
-const name          = computed(() => props.name || '')
+const sizeClass = computed(() => `checkbox-${props.size || 'md'}`);
+const colorClass = computed(() => `checkbox-${props.color || 'primary-em'}`);
+const disabledClass = computed(() => (props.disabled ? 'disabled' : ''));
+const name = computed(() => props.name || '');
 </script>
 
 <style lang="scss" scoped>
-@use "sass:map";
-@use "sass:color";
+@use 'sass:map';
+@use 'sass:color';
 
 $checkbox-sizes: (
   sm: 1rem,
   md: 1.25rem,
-  lg: 1.5rem
+  lg: 1.5rem,
 );
 
 $checkbox-colors-light: (
-  primary-em:   (bg: #3D89BC),
-  secondary-em: (bg: #F5F8FD),
-  tertiary-em:  (bg: transparent),
-  primary-bp:   (bg: #008080),
-  secondary-bp: (bg: #20B2AA),
-  tertiary-bp:  (bg: #E0FFFF)
+  primary-em: (
+    bg: #3d89bc,
+  ),
+  secondary-em: (
+    bg: #f5f8fd,
+  ),
+  tertiary-em: (
+    bg: transparent,
+  ),
+  primary-bp: (
+    bg: #008080,
+  ),
+  secondary-bp: (
+    bg: #20b2aa,
+  ),
+  tertiary-bp: (
+    bg: #e0ffff,
+  ),
 );
 
 $checkbox-colors-dark: (
-  primary-em:   (bg: #2A5E85),
-  secondary-em: (bg: #1A1F29),
-  tertiary-em:  (bg: transparent),
-  primary-bp:   (bg: #005959),
-  secondary-bp: (bg: #0F7E7E),
-  tertiary-bp:  (bg: transparent)
+  primary-em: (
+    bg: #2a5e85,
+  ),
+  secondary-em: (
+    bg: #1a1f29,
+  ),
+  tertiary-em: (
+    bg: transparent,
+  ),
+  primary-bp: (
+    bg: #005959,
+  ),
+  secondary-bp: (
+    bg: #0f7e7e,
+  ),
+  tertiary-bp: (
+    bg: transparent,
+  ),
 );
 
 .checkbox-wrapper {
@@ -127,10 +149,14 @@ $checkbox-colors-dark: (
 
   .sr-only {
     position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden; clip: rect(0,0,0,0);
-    white-space: nowrap; border: 0;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .checkbox-label {
@@ -142,10 +168,12 @@ $checkbox-colors-dark: (
     position: relative;
     border: 2px solid #ccc;
     border-radius: 0.25rem;
-    transition: border-color 0.2s, background 0.2s;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       border-left: 2px solid #fff;
       border-bottom: 2px solid #fff;
