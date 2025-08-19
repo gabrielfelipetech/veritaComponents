@@ -180,13 +180,14 @@ $btn-colors-dark: (
 }
 
 .default {
-  @apply flex items-center rounded-md transition-colors focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply inline-flex items-center justify-center text-center rounded-md leading-none
+         transition-colors focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed;
 }
 .size-sm {
   @apply h-8 text-sm px-4;
 }
 .size-md {
-  @apply h-10 text-base px-5;
+  @apply h-10 text-base px-5 py-5;
 }
 .size-lg {
   @apply h-12 text-lg px-6;
