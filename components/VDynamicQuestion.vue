@@ -32,7 +32,11 @@
           class="option-item flex flex-col gap-2"
         >
           <component
-            :is="{ radio: VRadio, checkbox: VCheckbox, toggle: VToggle }[field.type]"
+            :is="
+              ({ radio: VRadio, checkbox: VCheckbox, toggle: VToggle } as Record<string, any>)[
+                field.type
+              ]
+            "
             v-model="valueRef"
             :label-text="opt.label"
             :label-position="field.labelPosition"
@@ -83,7 +87,7 @@ import VCheckbox from '../components/VCheckbox.vue';
 import VToggle from '../components/VToggle.vue';
 import VOtherList from '../components/VOtherList.vue';
 import VRange from '../components/VRange.vue';
-import type { QuestionNode } from '../components/types';
+import type { QuestionNode, QuestionOption } from '../components/types';
 
 const props = withDefaults(
   defineProps<{
@@ -116,7 +120,7 @@ const asObjects = computed<boolean>(() => Boolean(field.value.asObjects));
 const objectKey = computed<string>(() => field.value.objectKey || 'option');
 
 function getOtherOpt(n: QuestionNode) {
-  return n.options?.find((o) => o.allowCustom);
+  return n.options?.find((o: QuestionOption) => o.allowCustom);
 }
 function otherValue(n: QuestionNode) {
   return getOtherOpt(n)?.value;

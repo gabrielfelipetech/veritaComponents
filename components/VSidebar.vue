@@ -8,6 +8,9 @@
 
 <script setup lang="ts">
 import VSidebarItem from './VSidebarItem.vue';
+defineProps<{
+  items: { label: string; icon?: string; to?: string }[];
+}>();
 </script>
 <style lang="scss">
 .sidebar {

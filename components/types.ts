@@ -5,13 +5,19 @@ export type NavItem = {
   children?: NavItem[];
   external?: boolean;
 };
-
+export type QuestionOption = {
+  label: string;
+  value: string | number | boolean;
+  allowCustom?: boolean;
+  children?: QuestionNode[];
+};
 export type QuestionNode =
   | {
       key: string;
       label: string;
       type: 'text' | 'number';
       placeholder?: string;
+      options?: QuestionOption[];
     }
   | {
       key: string;
