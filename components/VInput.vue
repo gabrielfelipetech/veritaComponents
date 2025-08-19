@@ -50,7 +50,7 @@ const {
   iconColor = 'text-gray-400',
   fullWidth = true,
   size = 'md',
-  color = 'primary-em',
+  color = 'primary-bp',
   isThemeDark = false,
   labelPosition = 'top',
 } = defineProps<{

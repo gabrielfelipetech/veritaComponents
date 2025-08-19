@@ -7,12 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import VSidebarItem from './VSidebarItem.vue';
-import type { NavItem } from './types';
-const props = defineProps<{
-  items: NavItem[];
-}>();
 </script>
 <style lang="scss">
 .sidebar {

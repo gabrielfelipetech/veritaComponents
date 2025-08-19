@@ -33,24 +33,29 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-const modelValue = defineModel<boolean | any[]>();
-
-const props = defineProps<{
-  modelValue?: boolean | any[];
-  value?: any;
-  name?: string;
-  labelText?: string;
-  labelPosition?: 'left' | 'right';
-  disabled?: boolean;
-  size?: 'sm' | 'md' | 'lg';
-  color?:
-    | 'primary-em'
-    | 'secondary-em'
-    | 'tertiary-em'
-    | 'primary-bp'
-    | 'secondary-bp'
-    | 'tertiary-bp';
-}>();
+const props = withDefaults(
+  defineProps<{
+    modelValue?: boolean | any[];
+    value?: any;
+    name?: string;
+    labelText?: string;
+    labelPosition?: 'left' | 'right';
+    disabled?: boolean;
+    size?: 'sm' | 'md' | 'lg';
+    color?:
+      | 'primary-em'
+      | 'secondary-em'
+      | 'tertiary-em'
+      | 'primary-bp'
+      | 'secondary-bp'
+      | 'tertiary-bp';
+  }>(),
+  {
+    labelPosition: 'right',
+    size: 'md',
+    color: 'primary-em',
+  },
+);
 
 const emit = defineEmits<{
   (e: 'update:modelValue', v: boolean | any[]): void;
@@ -81,7 +86,6 @@ function onChange(e: Event) {
 
 const sizeClass = computed(() => `checkbox-${props.size || 'md'}`);
 const colorClass = computed(() => `checkbox-${props.color || 'primary-em'}`);
-const disabledClass = computed(() => (props.disabled ? 'disabled' : ''));
 const name = computed(() => props.name || '');
 </script>
 

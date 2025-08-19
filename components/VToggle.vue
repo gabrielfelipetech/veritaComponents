@@ -19,7 +19,7 @@
 const modelValue = defineModel<boolean>();
 const {
   size = 'md',
-  color = 'primary-em',
+  color = 'primary-bp',
   disabled = false,
   labelText = '',
 } = defineProps<{
@@ -123,7 +123,7 @@ $btn-colors-light: (
 
   .toggle-text {
     margin-left: 0.5rem;
-    font-size: 0.875rem; /* text-sm */
+    font-size: 0.875rem;
     user-select: none;
   }
 }
