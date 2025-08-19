@@ -77,13 +77,13 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import VInput from '@/components/VInput.vue';
-import VRadio from '@/components/VRadio.vue';
-import VCheckbox from '@/components/VCheckbox.vue';
-import VToggle from '@/components/VToggle.vue';
-import VOtherList from '@/components/VOtherList.vue';
-import VRange from '@/components/VRange.vue';
-import type { QuestionNode } from '@/components/types';
+import VInput from '../components/VInput.vue';
+import VRadio from '../components/VRadio.vue';
+import VCheckbox from '../components/VCheckbox.vue';
+import VToggle from '../components/VToggle.vue';
+import VOtherList from '../components/VOtherList.vue';
+import VRange from '../components/VRange.vue';
+import type { QuestionNode } from '../components/types';
 
 const props = withDefaults(
   defineProps<{

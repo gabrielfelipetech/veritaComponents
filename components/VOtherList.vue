@@ -23,8 +23,8 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import VInput from '@/components/VInput.vue';
-import VButton from '@/components/VButton.vue';
+import VInput from '../components/VInput.vue';
+import VButton from '../components/VButton.vue';
 
 const props = withDefaults(
   defineProps<{
